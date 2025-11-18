@@ -1,4 +1,4 @@
-package com.MongoSpringBoot.MongoSpringBoot;
+package com.MongoSpringBoot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
