@@ -11,7 +11,8 @@
 	<groupId>com.MongoSpringBoot</groupId>
 	<artifactId>MongoSpringBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MongoSpringBoot</name>
+    <packaging>pom</packaging>
+    <name>MongoSpringBoot</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -20,6 +21,11 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>app-boot</module>
+		<module>app-service</module>
+		<module>app-web</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
