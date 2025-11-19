@@ -9,5 +9,5 @@ public interface EventHandler<T> {
     T transform(String payload);
 
     @SneakyThrows
-    void handle(T event, String key);
+    void handle(T event);
 }

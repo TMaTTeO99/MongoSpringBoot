@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageHeaders;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -47,6 +46,6 @@ public class EventPolicyDispatcher {
 
     private <T> void processEvent(EventHandler<T> handler, String messagePayload, String kafkaKey) {
         var event = handler.transform(messagePayload);
-        handler.handle(event, kafkaKey);
+        handler.handle(event);
     }
 }

@@ -13,7 +13,7 @@ spring:
           brokers: localhost:9092
           auto-create-topics: true
       bindings:
-        outletConsumer-in-0:
+        messageConsumer-in-0:
           destination: spring.mongo.message
           group: nfo-MongoSpringBoot-group
 server:

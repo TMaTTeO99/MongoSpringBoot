@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: SimpleKafkaSender
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        message-output:
+          destination: spring.mongo.message
+          content-type: application/json
+server:
+  port: 8081
+

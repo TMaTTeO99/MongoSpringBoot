@@ -13,13 +13,14 @@ import java.util.function.Consumer;
 @Slf4j
 public class EventPolicy {
 
+    private final EventPolicyDispatcher dispatcher;
     @Bean
     public Consumer<Message<?>> messageConsumer() {
 
         return (Message<?> message) -> {
             log.info("Message received: " + message);
             try {
-
+                dispatcher.dispatchToHandlers(message);
             } catch (Exception e) {
                 log.error("Cannot process message from provisionRequest topic", e);
                 throw e;

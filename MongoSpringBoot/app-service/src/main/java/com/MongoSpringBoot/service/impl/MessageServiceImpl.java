@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MessageServiceImpl implements MessageService {
 
-    @Override
-    public void printMessage(MessageEvent event, String key) {
 
+    @Override
+    public void printMessage(MessageEvent event) {
+        log.info(event.getMessage());
     }
 }

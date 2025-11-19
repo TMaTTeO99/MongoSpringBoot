@@ -4,5 +4,5 @@ import com.MongoSpringBoot.events.MessageEvent;
 
 public interface MessageService {
 
-    void printMessage(MessageEvent event, String key);
+    void printMessage(MessageEvent event);
 }

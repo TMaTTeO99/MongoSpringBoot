@@ -26,7 +26,7 @@ public class MessageEventHandler implements EventHandler<MessageEvent> {
     }
 
     @Override
-    public void handle(MessageEvent event, String key) {
-        messageService.printMessage(event, key);
+    public void handle(MessageEvent event) {
+        messageService.printMessage(event);
     }
 }
