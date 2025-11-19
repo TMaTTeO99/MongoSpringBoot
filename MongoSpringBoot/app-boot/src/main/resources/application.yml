@@ -4,5 +4,17 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:28017/mongospring
+  cloud:
+    function:
+      definition: messageConsumer;
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+      bindings:
+        outletConsumer-in-0:
+          destination: spring.mongo.message
+          group: nfo-MongoSpringBoot-group
 server:
   port: 8080

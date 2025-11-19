@@ -38,7 +38,6 @@ public class UsersApiDelegateImpl implements UsersApiDelegate {
     @Override
     @PostMapping(value = "/find-by-spec")
     public ResponseEntity<UsersDto> getUsersBySpecification(@RequestBody UserSpecDto spec) {
-
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
     }
 
