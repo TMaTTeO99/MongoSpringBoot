@@ -12,4 +12,7 @@ public interface UsersApiDelegate {
 
     ResponseEntity<UsersDto> addUser(UsersDto user);
 
+    ResponseEntity<UsersDto> updateUser(Long id, UsersDto user);
+
+    ResponseEntity<Void> deleteUser(Long id);
 }

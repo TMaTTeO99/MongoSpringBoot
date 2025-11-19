@@ -8,8 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,12 +44,32 @@ public class UsersApiDelegateImpl implements UsersApiDelegate {
 
     @Override
     @PostMapping
-    public ResponseEntity<UsersDto> addUser(UsersDto user) {
+    public ResponseEntity<UsersDto> addUser(@RequestBody UsersDto user) {
         if (log.isDebugEnabled()) {
             log.debug("CONTROLLER UsersApiDelegateImpl addUser: (user: {})", user);
         }
         return ResponseEntity.ok(usersService.addUser(user));
     }
 
+    @Override
+    @PutMapping
+    public ResponseEntity<UsersDto> updateUser(@RequestParam("id") Long id, @RequestBody UsersDto user) {
 
+        if (log.isDebugEnabled()) {
+            log.debug("CONTROLLER UsersApiDelegateImpl updateUser: (id: {}, user: {})", id, user);
+        }
+
+        return ResponseEntity.ok(usersService.updateUser(id, user));
+    }
+
+    @Override
+    @DeleteMapping
+    public ResponseEntity<Void> deleteUser(@RequestParam("id") Long id) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("CONTROLLER UsersApiDelegateImpl deleteUser: (id: {})", id);
+        }
+        usersService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
 }

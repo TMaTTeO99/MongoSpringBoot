@@ -46,4 +46,31 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.toDtoFromUser(savedUser);
     }
 
+    @Override
+    public UsersDto updateUser(Long id, UsersDto user) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("UsersServiceImpl updateUser: (id: {}, user: {})", id, user);
+        }
+
+        UsersEntity userEntity = usersRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + id));
+
+        usersMapper.update(user, userEntity);
+        UsersEntity savedUser = usersRepository.save(userEntity);
+
+        return usersMapper.toDtoFromUser(savedUser);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("UsersServiceImpl deleteUser: (id: {})", id);
+        }
+
+        usersRepository.deleteById(id);
+    }
+
 }

@@ -6,5 +6,7 @@ public interface UsersService {
 
     UsersDto getUserById(Long id);
     UsersDto addUser(UsersDto user);
+    UsersDto updateUser(Long id, UsersDto user);
+    void deleteUser(Long id);
 
 }
