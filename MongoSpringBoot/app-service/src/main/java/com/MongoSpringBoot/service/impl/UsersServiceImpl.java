@@ -19,18 +19,29 @@ public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
 
     @Override
+    public UsersEntity internalGetUserById(Long id) {
+        return usersRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("user not found: " + id));
+    }
+
+    @Override
     public UsersDto getUserById(Long id) {
 
         if (log.isDebugEnabled()) {
             log.debug("UsersServiceImpl getUserById: (id: {})", id);
         }
 
-        UsersEntity user = usersRepository
-                .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("user not found: " + id));
+        return usersMapper.toDtoFromUser(internalGetUserById(id));
+    }
 
-        return usersMapper.toDtoFromUser(user);
+    @Override
+    public UsersEntity saveUser(UsersEntity user) {
 
+        if (log.isDebugEnabled()) {
+            log.debug("UsersServiceImpl saveUser: (user: {})", user);
+        }
+        return usersRepository.save(user);
     }
 
     @Override
@@ -40,8 +51,7 @@ public class UsersServiceImpl implements UsersService {
             log.debug("UsersServiceImpl addUser: (user: {})", user);
         }
 
-        UsersEntity savedUser = usersRepository.save(usersMapper.toUserFromDto(user));
-        return usersMapper.toDtoFromUser(savedUser);
+        return usersMapper.toDtoFromUser(saveUser(usersMapper.toUserFromDto(user)));
     }
 
     @Override
@@ -70,5 +80,6 @@ public class UsersServiceImpl implements UsersService {
 
         usersRepository.deleteById(id);
     }
+
 
 }

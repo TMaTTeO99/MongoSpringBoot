@@ -14,5 +14,7 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain = true)
 public class MessageEvent {
+
     private String message;
+    private Long id;
 }

@@ -2,7 +2,7 @@ package com.MongoSpringBoot.policy;
 
 import com.MongoSpringBoot.enums.MyAppEventType;
 import com.MongoSpringBoot.events.MessageEvent;
-import com.MongoSpringBoot.service.MessageService;
+import com.MongoSpringBoot.service.MessageEventService;
 import com.MongoSpringBoot.utils.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageEventHandler implements EventHandler<MessageEvent> {
 
-    private final MessageService messageService;
+    private final MessageEventService messageService;
 
     @Override
     public boolean supports(String eventType) {
@@ -27,6 +27,6 @@ public class MessageEventHandler implements EventHandler<MessageEvent> {
 
     @Override
     public void handle(MessageEvent event) {
-        messageService.printMessage(event);
+        messageService.saveMessage(event);
     }
 }

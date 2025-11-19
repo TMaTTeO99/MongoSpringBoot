@@ -2,7 +2,7 @@ package com.MongoSpringBoot.service;
 
 import com.MongoSpringBoot.events.MessageEvent;
 
-public interface MessageService {
+public interface MessageEventService {
 
-    void printMessage(MessageEvent event);
+    void saveMessage(MessageEvent event);
 }

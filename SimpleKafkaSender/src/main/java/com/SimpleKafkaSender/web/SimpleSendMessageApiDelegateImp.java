@@ -1,5 +1,6 @@
 package com.SimpleKafkaSender.web;
 
+import com.SimpleKafkaSender.DTOs.MessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -20,9 +21,10 @@ public class SimpleSendMessageApiDelegateImp {
     private final StreamBridge streamBridge;
 
     @PostMapping("/send")
-    public String sendMessage(@RequestParam("event") String eventType, @RequestBody String message) {
+    public String sendMessage(@RequestParam("event") String eventType, @RequestBody MessageDto message) {
 
-        Message<String> kafkaMessage = MessageBuilder.withPayload(message)
+
+        Message<MessageDto> kafkaMessage = MessageBuilder.withPayload(message)
                 .setHeader("x-event-type", eventType)
                 .build();
 
