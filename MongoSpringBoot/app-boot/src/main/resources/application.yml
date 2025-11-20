@@ -3,7 +3,8 @@ spring:
     name: MongoSpringBoot
   data:
     mongodb:
-      uri: mongodb://localhost:28017/mongospring
+      uri: mongodb://localhost:28017/mongospring?replicaSet=rs0&directConnection=true&w=majority
+      database: mongospring
   cloud:
     function:
       definition: messageConsumer;
