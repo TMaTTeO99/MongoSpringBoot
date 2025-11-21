@@ -12,8 +12,10 @@ import org.mapstruct.Mapping;
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface OrdersMapper {
 
-
+    @Mapping(target = "id", source = "orderId")
     OrdersEntity toEntityFromDto(OrderDto orderDto);
+
+    @Mapping(target = "orderId", source = "id")
     OrderDto toDtoFromEntity(OrdersEntity orderDto);
 
 }

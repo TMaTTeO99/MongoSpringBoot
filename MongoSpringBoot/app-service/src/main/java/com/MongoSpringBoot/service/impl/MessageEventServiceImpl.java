@@ -21,9 +21,7 @@ public class MessageEventServiceImpl implements MessageEventService {
     @Override
     public void saveMessage(MessageEvent event) {
 
-        if (log.isDebugEnabled()) {
-            log.debug("Service MessageEventService saveMessage: (event: {})", event);
-        }
+        log.info("Service MessageEventService saveMessage: (event: {})", event);
 
         UsersEntity user = usersService.internalGetUserById(event.getId());
 
@@ -37,5 +35,8 @@ public class MessageEventServiceImpl implements MessageEventService {
                 .build());
 
         usersService.saveUser(user);
+
+        log.info("MessageEventServiceImpl saveMessage event processed");
+
     }
 }

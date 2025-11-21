@@ -23,9 +23,7 @@ public class OutletEventServiceImpl implements OutletEventService {
     @Transactional
     public void handleOutletEvent(OutletEvent outletEvent) {
 
-        if (log.isDebugEnabled()) {
-            log.debug("OutletEventService handleOutletEvent: (outletEvent: {})", outletEvent);
-        }
+        log.info("OutletEventService handleOutletEvent: (outletEvent: {})", outletEvent);
 
         String name = outletEvent.getName();
         String address = outletEvent.getAddress();
@@ -42,6 +40,7 @@ public class OutletEventServiceImpl implements OutletEventService {
         }
 
         outletService.saveOutlet(outletService.buildOutletFromEvent(outletEvent));
+        log.info("OutletEventServiceImpl handleOutletEvent event processed");
 
     }
 }

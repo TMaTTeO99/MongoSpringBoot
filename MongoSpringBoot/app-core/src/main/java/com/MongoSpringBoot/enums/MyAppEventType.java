@@ -4,5 +4,6 @@ public enum MyAppEventType {
 
     MESSAGE_EVENT,
     OUTLET_EVENT,
+    PRODUCT_EVENT
 
 }
