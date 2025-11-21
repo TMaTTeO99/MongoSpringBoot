@@ -1,7 +1,6 @@
 package com.MongoSpringBoot.DTOs;
 
 import com.MongoSpringBoot.enums.OrderStatus;
-import com.MongoSpringBoot.model.ProductsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +17,6 @@ public class OrderDto {
 
     private Long orderId;
     private LocalDateTime orderDate;
-    private OrderStatus orderStatus;
-    private List<ProductDto> products;
+    private List<ProductDto> items;
+
 }
