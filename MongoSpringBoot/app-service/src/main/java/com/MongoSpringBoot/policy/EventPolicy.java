@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 public class EventPolicy {
 
     private final EventPolicyDispatcher dispatcher;
+
     @Bean
     public Consumer<Message<?>> messageConsumer() {
 
@@ -29,4 +30,17 @@ public class EventPolicy {
 
     }
 
+    @Bean
+    public Consumer<Message<?>> outletConsumer() {
+
+        return (Message<?> message) -> {
+            log.info("Message received: " + message);
+            try {
+                dispatcher.dispatchToHandlers(message);
+            } catch (Exception e) {
+                log.error("Cannot process message from provisionRequest topic", e);
+                throw e;
+            }
+        };
+    }
 }

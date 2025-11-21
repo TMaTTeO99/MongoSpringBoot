@@ -7,7 +7,7 @@ spring:
       database: mongospring
   cloud:
     function:
-      definition: messageConsumer;
+      definition: messageConsumer;outletConsumer
     stream:
       kafka:
         binder:
@@ -16,6 +16,9 @@ spring:
       bindings:
         messageConsumer-in-0:
           destination: spring.mongo.message
+          group: nfo-MongoSpringBoot-group
+        outletConsumer-in-0:
+          destination: spring.mongo.outlet
           group: nfo-MongoSpringBoot-group
 server:
   port: 8080

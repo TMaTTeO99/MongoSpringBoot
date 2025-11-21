@@ -2,6 +2,7 @@ package com.MongoSpringBoot.enums;
 
 public enum MyAppEventType {
 
-    MESSAGE_EVENT
+    MESSAGE_EVENT,
+    OUTLET_EVENT,
 
 }
