@@ -35,14 +35,13 @@ public class OrdersApiDelegateImpl implements OrdersApiDelegate {
 
     @Override
     @GetMapping
-    public ResponseEntity<OrderDto> getOrder(@RequestParam("id") String orderId) {
+    public ResponseEntity<OrderDto> getOrder(@RequestParam("id") Long orderId) {
 
         if (log.isDebugEnabled()) {
             log.debug("OrdersApiDelegate getOrder: (orderId: {})", orderId);
         }
 
-
-        return null;
+        return ResponseEntity.ok(ordersService.getOrderById(orderId));
     }
 
 }

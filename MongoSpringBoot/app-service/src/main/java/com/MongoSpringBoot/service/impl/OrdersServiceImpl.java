@@ -2,6 +2,7 @@ package com.MongoSpringBoot.service.impl;
 
 import com.MongoSpringBoot.DTOs.OrderDto;
 import com.MongoSpringBoot.enums.OrderStatus;
+import com.MongoSpringBoot.exception.EntityNotFoundException;
 import com.MongoSpringBoot.model.OrdersEntity;
 import com.MongoSpringBoot.model.UsersEntity;
 import com.MongoSpringBoot.repository.OrdersRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +35,12 @@ public class OrdersServiceImpl implements OrdersService {
             log.debug("OrdersService getOrderById: (id: {})", id);
         }
 
-        //TODO: to be implemented
-        return null;
+        OrdersEntity orderOpt =
+                ordersRepository
+                        .findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("Order not found: " + id));
+
+        return ordersMapper.toDtoFromEntity(orderOpt);
     }
 
     @Override
