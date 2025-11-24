@@ -23,14 +23,14 @@ jobs:
           cache: maven
 
       - name: Start Infrastructure
-        run: docker compose -f DockerCompose/docker-compose.yml up -d
+        run: docker compose -f DockerCompose/docker-compose.yaml up -d
 
       - name: Wait for Services to Start
         run: |
           echo "Waiting for Mongo and Kafka to initialize..."
           sleep 30
           # FIX 2: Added -f path here so it checks the right containers
-          docker compose -f DockerCompose/docker-compose.yml ps
+          docker compose -f DockerCompose/docker-compose.yaml ps
 
       - name: Run Maven Unit Tests
         working-directory: ./MongoSpringBoot
@@ -38,8 +38,8 @@ jobs:
 
       - name: Print Logs on Failure
         if: failure()
-        run: docker compose -f DockerCompose/docker-compose.yml logs
+        run: docker compose -f DockerCompose/docker-compose.yaml logs
 
       - name: Stop Containers
         if: always()
-        run: docker compose -f DockerCompose/docker-compose.yml down
+        run: docker compose -f DockerCompose/docker-compose.yaml down
