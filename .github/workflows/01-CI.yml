@@ -22,5 +22,22 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Start Infrastructure
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Wait for Services to Start
+        run: |
+          echo "Waiting for Mongo and Kafka to initialize..."
+          sleep 30
+          docker compose ps
+
       - name: Run Maven Unit Tests
         run: cd MongoSpringBoot && mvn clean test 
+
+      - name: Print Logs on Failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Stop Containers
+        if: always()
+        run: docker compose down
