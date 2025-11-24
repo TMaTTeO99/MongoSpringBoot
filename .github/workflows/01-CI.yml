@@ -21,6 +21,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-          
+
       - name: Run Maven Unit Tests
-        run: mvn clean test 
+        run: cd MongoSpringBoot && mvn clean test 
