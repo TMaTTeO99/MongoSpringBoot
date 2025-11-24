@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -70,7 +71,7 @@ public class OrdersServiceImpl implements OrdersService {
             orderEntity.setOrderStatus(OrderStatus.Accepted);
         }
 
-
+        orderEntity.setOrderDate(LocalDateTime.now());
         OrdersEntity orderSaved = ordersRepository.save(orderEntity);
 
         return ordersMapper.toDtoFromEntity(orderSaved);
