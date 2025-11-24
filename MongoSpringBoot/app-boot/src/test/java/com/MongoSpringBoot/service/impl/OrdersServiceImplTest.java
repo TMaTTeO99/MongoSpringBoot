@@ -20,10 +20,8 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import scala.Product;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,7 +104,7 @@ public class OrdersServiceImplTest {
         entityToSave.setUserId(userId);
         entityToSave.setOutletId(outletId);
         entityToSave.setOrderDate(fixedTime);
-        entityToSave.setOrderStatus(OrderStatus.Accepted); 
+        entityToSave.setOrderStatus(OrderStatus.Accepted);
 
         OrdersEntity savedEntity = buildMockOrdersEntity(generatedOrderId, userId);
         savedEntity.setOutletId(outletId);
