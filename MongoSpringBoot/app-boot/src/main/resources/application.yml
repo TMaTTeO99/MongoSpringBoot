@@ -20,5 +20,9 @@ spring:
         outletConsumer-in-0:
           destination: spring.mongo.outlet
           group: nfo-MongoSpringBoot-group
+mongock:
+  migration-scan-package: com.MongoSpringBoot.config.dbmigrations
+
 server:
   port: 8080
+debug: true

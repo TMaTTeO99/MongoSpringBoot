@@ -24,12 +24,8 @@ public class OrdersEntity {
     @Id
     private Long id;
 
-    @Indexed
     private Long userId;
-
-    @Indexed
     private Long outletId;
-
     private LocalDateTime orderDate;
     private OrderStatus orderStatus;
     private List<OrderItem> items;
